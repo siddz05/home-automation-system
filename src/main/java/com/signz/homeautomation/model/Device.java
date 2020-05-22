@@ -1,15 +1,19 @@
 package com.signz.homeautomation.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
 @Entity
+@Data
+@NoArgsConstructor
 public class Device {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
     private String deviceName;
 

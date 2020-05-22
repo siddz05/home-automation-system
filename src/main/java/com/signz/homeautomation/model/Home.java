@@ -1,17 +1,17 @@
 package com.signz.homeautomation.model;
 
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.Set;
 
-@Data
 @Entity
+@Data
 public class Home {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
     private String name;
     @OneToMany(mappedBy = "home")

@@ -1,17 +1,18 @@
 package com.signz.homeautomation.model;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
-@Data
 @Entity
+@Data
+@NoArgsConstructor
 public class Command {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Integer id;
     private String deviceCommand;
     @ManyToOne

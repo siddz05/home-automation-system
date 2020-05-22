@@ -14,15 +14,16 @@ import java.util.List;
 @RequestMapping("/home")
 public class HomeController {
 
-    @Autowired
+   // @Autowired
     HomeService homeService;
 
-    /**
+/**
      * @param res
      * @param home
      * @return Home
      * @throws Exception
-     */
+     **/
+
     @PostMapping("/")
     BaseResponse<Home> addNewHome(HttpServletResponse res, @RequestBody Home home) throws Exception {
         Home homeData = homeService.addHome(home);
