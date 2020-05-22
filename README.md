@@ -1,20 +1,22 @@
-# Read Me First
+# Home Automation System
 The following was discovered as part of building this project:
 
 * The original package name 'com.signz.home-automation' is invalid and this project uses 'com.signz.homeautomation' instead.
 
 # Getting Started
 
-### Reference Documentation
-For further reference, please consider the following sections:
+### Reference Problem Statement
 
-* [Official Gradle documentation](https://docs.gradle.org)
-* [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/gradle-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/gradle-plugin/reference/html/#build-image)
-* [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/reference/htmlsingle/#using-boot-devtools)
-* [Spring Web](https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/reference/htmlsingle/#boot-features-developing-web-applications)
-* [Rest Repositories](https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/reference/htmlsingle/#howto-use-exposing-spring-data-repositories-rest-endpoint)
-* [Spring Security](https://docs.spring.io/spring-boot/docs/2.3.0.RELEASE/reference/htmlsingle/#boot-features-security)
+- Home Automation
+- Build a Home Automation system to remotely control devices at home. Expose a set of RESTful APIs to control the smart devices remotely. 
+- Build a web console through which one can control and manage the entire system.
+- To talk to devices mimic one or more libraries that just logs the action it performed. 
+Scenarios
+- List all smart devices
+- Add new smart device
+- Perform an operation on a device 
+- Remove an installed device
+ 
 
 ### Guides
 The following guides illustrate how to use some features concretely:
