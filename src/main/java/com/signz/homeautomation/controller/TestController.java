@@ -6,13 +6,17 @@ import com.signz.homeautomation.utility.response.BaseResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.signz.homeautomation.utility.Constants.PRODUCES;
+
+@ApiIgnore
 @RestController
-@RequestMapping("/test")
+@RequestMapping(value = "/test", produces = PRODUCES)
 public class TestController {
 
     @GetMapping(value = "/exc")

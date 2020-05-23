@@ -1,6 +1,6 @@
 package com.signz.homeautomation.model;
 
-import lombok.Data;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,9 +15,10 @@ public class Home {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @Setter(AccessLevel.NONE)
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "home",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "home", cascade = CascadeType.ALL)
     private Set<Device> deviceSet;
 
     public void addDevice(Device device) {

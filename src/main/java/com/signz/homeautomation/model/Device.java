@@ -1,10 +1,8 @@
 package com.signz.homeautomation.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.signz.homeautomation.utility.enumconstants.SUPPORTED_DEVICE;
-import lombok.Data;
+import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -18,6 +16,7 @@ public class Device {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
+    @Setter(AccessLevel.NONE)
     private Integer id;
 
     private String deviceName;

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+import static com.signz.homeautomation.utility.Constants.PRODUCES;
+
 @RestController
-@RequestMapping("/device")
+@RequestMapping(value = "/device", produces = PRODUCES)
 public class DeviceController {
 
     @Autowired

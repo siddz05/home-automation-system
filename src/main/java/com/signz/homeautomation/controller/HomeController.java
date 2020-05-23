@@ -6,14 +6,19 @@ import com.signz.homeautomation.model.Home;
 import com.signz.homeautomation.service.HomeService;
 import com.signz.homeautomation.utility.response.ApiResponse;
 import com.signz.homeautomation.utility.response.BaseResponse;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.List;
 
+import static com.signz.homeautomation.utility.Constants.PRODUCES;
+
+//@Api(value = "Content Api", tags = "content-api")
 @RestController
-@RequestMapping("/home")
+@RequestMapping(value = "/home", produces = PRODUCES)
 public class HomeController {
 
     @Autowired
@@ -46,6 +51,7 @@ public class HomeController {
 
 
     @GetMapping("")
+    @io.swagger.annotations.ApiResponse(code = 200, message = "All Conected Home", response = Home.class)
     BaseResponse<List<Home>> getAllHome(HttpServletResponse res) throws Exception {
         List<Home> homeData = homeService.getAllHome();
         return new ApiResponse<>(res, homeData);

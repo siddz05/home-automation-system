@@ -5,13 +5,14 @@ import com.signz.homeautomation.command.invoker.DeviceCommandInvoker;
 import com.signz.homeautomation.command.light.Light;
 import com.signz.homeautomation.command.light.TurnOffLightCommand;
 import com.signz.homeautomation.command.light.TurnOnLightCommand;
+import com.signz.homeautomation.command.tv.*;
 import com.signz.homeautomation.exception.CommandNotFoundException;
 import com.signz.homeautomation.exception.DeviceNotFoundException;
 import com.signz.homeautomation.exception.UnsupportedCommandException;
 import com.signz.homeautomation.model.Command;
 import com.signz.homeautomation.model.Device;
 import com.signz.homeautomation.repository.CommandRepository;
-import com.signz.homeautomation.utility.enumconstants.SUPPORTED_DEVICE;
+import com.signz.homeautomation.utility.enumconstants.SupportedDevice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -99,44 +100,63 @@ public class CommandServiceImpl implements CommandService {
     public MasterCommand buildCommand(Device device, Integer commandId) throws DeviceNotFoundException, UnsupportedCommandException {
         MasterCommand command = null;
         Command commandObj = getCommandById(commandId);
+        String commandName = commandObj.getDeviceCommand();
+        String d = device.getDeviceName();
+        SupportedDevice deviceName = SupportedDevice.getDeviceByValue(d);
 
-        //SUPPORTED_DEVICE deviceName = SUPPORTED_DEVICE.getEnum();
+        try{
+            SupportedDevice abc = SupportedDevice.valueOf("FAN");
+            System.out.println(abc);
+        }catch (Exception e){
+           e.printStackTrace();
+        }
 
-        switch (device.getDeviceName()) {
-
-            case "light":
-                Light light = new Light();
-                String commandName = commandObj.getDeviceCommand();
-
-                switch (commandName) {
-                    case "turnOn":
-                        command = new TurnOnLightCommand(light);
-                        break;
-                    case "turnOff":
-                        command = new TurnOffLightCommand(light);
-                        break;
-                    default:
-                        throw new UnsupportedCommandException("Command Not Supported");
-                }
+        switch (deviceName) {
+            case LIGHT:
+                command = getCommandForLight(command, commandName);
                 break;
-            case "fan":
-//                Fan fan = new Light();
-//                String commandName = commandObj.getDeviceCommand();
-//
-//                switch (commandName) {
-//                    case "TurnOn":
-//                        command = new TurnOnLightCommand(light);
-//                        break;
-//                    case "TurnOff":
-//                        command = new TurnOffLightCommand(light);
-//                        break;
-//                    default:
-//                        throw new UnsupportedCommandException("Command Not Supported");
-//                }
+            case TV:
+                command = getCommandForTv(command, commandName);
                 break;
             default:
                 throw new DeviceNotFoundException("No Device found");
+        }
+        return command;
+    }
 
+    private MasterCommand getCommandForTv(MasterCommand command, String commandName) {
+        Tv tv = new Tv();
+
+        switch (commandName) {
+            case "turnOn":
+                command = new TurnOnTvCommand(tv);
+                break;
+            case "turnOff":
+                command = new TurnOffTvCommand(tv);
+                break;
+            case "changeChannel":
+                command = new ChangeChannelTvCommand(tv);
+                break;
+            case "changeVolume":
+                command = new ChangeVolumeTvCommand(tv);
+                break;
+            default:
+                throw new UnsupportedCommandException("Command Not Supported");
+        }
+        return command;
+    }
+
+    private MasterCommand getCommandForLight(MasterCommand command, String commandName) {
+        Light light = new Light();
+        switch (commandName) {
+            case "turnOn":
+                command = new TurnOnLightCommand(light);
+                break;
+            case "turnOff":
+                command = new TurnOffLightCommand(light);
+                break;
+            default:
+                throw new UnsupportedCommandException("Command Not Supported");
         }
         return command;
     }

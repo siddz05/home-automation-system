@@ -7,6 +7,11 @@ import static com.signz.homeautomation.utility.Utility.print;
  */
 public class Light {
 
+    enum SupportedCommands{
+        TURN_ON,
+        TURN_OFF,
+    }
+
     public String turnOn() {
         print("Light On");
         return "LIGHT IS NOW ON!!!";

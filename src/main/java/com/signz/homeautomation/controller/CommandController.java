@@ -9,12 +9,16 @@ import com.signz.homeautomation.utility.response.ApiResponse;
 import com.signz.homeautomation.utility.response.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+import static com.signz.homeautomation.utility.Constants.PRODUCES;
+
+@ApiIgnore
 @RestController
-@RequestMapping("/command")
+@RequestMapping(value = "/command", produces = PRODUCES)
 public class CommandController {
 
     @Autowired
