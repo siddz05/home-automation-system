@@ -1,16 +1,16 @@
 package com.signz.homeautomation.service;
 
+import com.signz.homeautomation.command.MasterCommand;
 import com.signz.homeautomation.exception.CommandNotFoundException;
 import com.signz.homeautomation.exception.DeviceNotFoundException;
+import com.signz.homeautomation.exception.UnsupportedCommandException;
 import com.signz.homeautomation.model.Command;
 import com.signz.homeautomation.model.Device;
 import com.signz.homeautomation.repository.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static com.signz.homeautomation.utility.Utility.isNull;
 
@@ -22,6 +22,9 @@ public class DeviceServiceImpl implements DeviceService {
 
     @Autowired
     DeviceRepository deviceRepository;
+
+    @Autowired
+    CommandService commandService;
 
 
     /**
@@ -40,8 +43,7 @@ public class DeviceServiceImpl implements DeviceService {
     @Override
     public Device updateDevice(Device device) throws DeviceNotFoundException {
         Device deviceData = getDeviceById(device.getId());
-
-        if (!deviceData.getDeviceName().isEmpty()) deviceData.setDeviceName(device.getDeviceName());
+        deviceData.setDeviceName(device.getDeviceName());
         if (!deviceData.getCommandSet().isEmpty()) deviceData.setCommandSet(device.getCommandSet());
 
         return deviceRepository.save(deviceData);
@@ -103,7 +105,7 @@ public class DeviceServiceImpl implements DeviceService {
      * @return
      */
     @Override
-    public Device removeCommandInDevice(Command command, Integer deviceId) throws CommandNotFoundException, DeviceNotFoundException {
+    public Device removeCommandFromDevice(Command command, Integer deviceId) throws CommandNotFoundException, DeviceNotFoundException {
         if (isNull(command)) {
             throw new CommandNotFoundException("No Command Found");
         }
@@ -111,5 +113,29 @@ public class DeviceServiceImpl implements DeviceService {
         device.removeCommand(command);
         deviceRepository.save(device);
         return device;
+    }
+
+    /**
+     * @param deviceId
+     * @param commandId
+     * @return
+     * @throws CommandNotFoundException
+     * @throws DeviceNotFoundException
+     */
+    @Override
+    public Object executeCommandForDevice(Integer deviceId, Integer commandId) throws CommandNotFoundException, DeviceNotFoundException, UnsupportedCommandException {
+        Device device = deviceRepository.findByDeviceIdAndCommandId(deviceId, commandId);
+
+        if (isNull(device)) {
+            Device deviceData = getDeviceById(deviceId);
+
+            if (isNull(deviceData)) throw new DeviceNotFoundException("No Device Found");
+
+            return deviceData;
+        }
+        ;
+
+        MasterCommand masterCommand = commandService.buildCommand(device, commandId);
+        return commandService.executeCommand(masterCommand);
     }
 }

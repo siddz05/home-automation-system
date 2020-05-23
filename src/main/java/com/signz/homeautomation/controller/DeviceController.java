@@ -1,11 +1,10 @@
 package com.signz.homeautomation.controller;
 
 import com.signz.homeautomation.exception.DeviceNotFoundException;
+import com.signz.homeautomation.exception.UnsupportedCommandException;
 import com.signz.homeautomation.model.Command;
 import com.signz.homeautomation.model.Device;
-import com.signz.homeautomation.model.Home;
 import com.signz.homeautomation.service.DeviceService;
-import com.signz.homeautomation.service.HomeService;
 import com.signz.homeautomation.utility.response.ApiResponse;
 import com.signz.homeautomation.utility.response.BaseResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -83,10 +82,31 @@ public class DeviceController {
         return new ApiResponse<>(res, deviceData);
     }
 
+    /**
+     * @param res
+     * @param deviceId
+     * @param command
+     * @return
+     * @throws DeviceNotFoundException
+     */
     @DeleteMapping("/{device-id}/command")
     BaseResponse<Device> removeCommandFromDevice(HttpServletResponse res, @PathVariable("device-id") Integer deviceId, @RequestBody Command command) throws DeviceNotFoundException {
-        Device deviceData = deviceService.removeCommandInDevice(command, deviceId);
+        Device deviceData = deviceService.removeCommandFromDevice(command, deviceId);
         return new ApiResponse<>(res, deviceData);
+    }
+
+    /**
+     * @param res
+     * @param deviceId
+     * @param commandId
+     * @return
+     * @throws DeviceNotFoundException
+     * @throws UnsupportedCommandException
+     */
+    @GetMapping("/{device-id}/command/{command-id}")
+    BaseResponse<Object> executeCommandForDevice(HttpServletResponse res, @PathVariable("device-id") Integer deviceId, @PathVariable("command-id") Integer commandId) throws DeviceNotFoundException, UnsupportedCommandException {
+        Object commandOutput = deviceService.executeCommandForDevice(deviceId, commandId);
+        return new ApiResponse<>(res, commandOutput);
     }
 
 }

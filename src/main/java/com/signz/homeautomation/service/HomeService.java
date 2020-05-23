@@ -53,6 +53,6 @@ public interface HomeService {
      * @param homeId
      * @return
      */
-    Home removeDeviceInHome(Device device, Integer homeId) throws HomeNotFoundException, DeviceNotFoundException;
+    Home removeDeviceFromHome(Device device, Integer homeId) throws HomeNotFoundException, DeviceNotFoundException;
 
 }

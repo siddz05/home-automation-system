@@ -23,6 +23,9 @@ public class HomeServiceImpl implements HomeService {
     @Autowired
     HomeRepository homeRepository;
 
+    @Autowired
+    DeviceService deviceService;
+
     /**
      * @param home
      * @return
@@ -78,8 +81,11 @@ public class HomeServiceImpl implements HomeService {
         if (isNull(device)) {
             throw new DeviceNotFoundException("No Device Found");
         }
+
+        Device deviceSaved = deviceService.addDevice(device);
+
         Home home = getHomeById(homeId);
-        home.addDevice(device);
+        home.addDevice(deviceSaved);
         homeRepository.save(home);
         return home;
     }
@@ -90,7 +96,7 @@ public class HomeServiceImpl implements HomeService {
      * @return
      */
     @Override
-    public Home removeDeviceInHome(Device device, Integer homeId) {
+    public Home removeDeviceFromHome(Device device, Integer homeId) {
         if (isNull(device)) {
             throw new DeviceNotFoundException("No Device Found");
         }

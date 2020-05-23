@@ -59,7 +59,7 @@ public class HomeController {
 
     @DeleteMapping("/{home-id}/device")
     BaseResponse<Home> removeDeviceFromHome(HttpServletResponse res, @PathVariable("home-id") Integer homeId, @RequestBody Device device) throws Exception {
-        Home homeData = homeService.removeDeviceInHome(device, homeId);
+        Home homeData = homeService.removeDeviceFromHome(device, homeId);
         return new ApiResponse<>(res, homeData);
     }
 

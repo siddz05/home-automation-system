@@ -1,7 +1,11 @@
 package com.signz.homeautomation.service;
 
+import com.signz.homeautomation.command.MasterCommand;
 import com.signz.homeautomation.exception.CommandNotFoundException;
+import com.signz.homeautomation.exception.DeviceNotFoundException;
+import com.signz.homeautomation.exception.UnsupportedCommandException;
 import com.signz.homeautomation.model.Command;
+import com.signz.homeautomation.model.Device;
 
 import java.util.List;
 
@@ -38,4 +42,17 @@ public interface CommandService {
      * @return
      */
     List<Command> getAllCommand();
+
+    /**
+     * @param device
+     * @param commandId
+     * @return
+     */
+    MasterCommand buildCommand(Device device, Integer commandId) throws DeviceNotFoundException, UnsupportedCommandException;
+
+    /**
+     * @param command
+     */
+    String executeCommand(MasterCommand command);
+
 }

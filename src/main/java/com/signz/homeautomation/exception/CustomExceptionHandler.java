@@ -28,6 +28,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     }
 
+    /**
+     * @param ex
+     * @param res
+     * @return
+     */
     @ExceptionHandler(DeviceNotFoundException.class)
     public final ResponseEntity<Object> handelDeviceNotFoundException(DeviceNotFoundException ex, HttpServletResponse res) {
         List<String> detailList = new ArrayList<>();
@@ -37,6 +42,11 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity(error, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * @param ex
+     * @param res
+     * @return
+     */
     @ExceptionHandler(HomeNotFoundException.class)
     public final ResponseEntity<Object> handelHomeNotFoundException(HomeNotFoundException ex, HttpServletResponse res) {
         List<String> detailList = new ArrayList<>();
@@ -46,12 +56,32 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity(error, HttpStatus.NOT_FOUND);
     }
 
+    /**
+     * @param ex
+     * @param res
+     * @return
+     */
     @ExceptionHandler(CommandNotFoundException.class)
-    public final ResponseEntity<Object> handelHomeNotFoundException(CommandNotFoundException ex, HttpServletResponse res) {
+    public final ResponseEntity<Object> handelCommandNotFoundException(CommandNotFoundException ex, HttpServletResponse res) {
         List<String> detailList = new ArrayList<>();
         detailList.add(ex.getLocalizedMessage());
 
         BaseResponse<Object> error = new ApiResponse<>(res, HttpStatus.NOT_FOUND.value(), detailList, "No Command Found");
+        return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+    }
+
+
+    /**
+     * @param ex
+     * @param res
+     * @return
+     */
+    @ExceptionHandler(UnsupportedCommandException.class)
+    public final ResponseEntity<Object> handelUnsupportedActionException(UnsupportedCommandException ex, HttpServletResponse res) {
+        List<String> detailList = new ArrayList<>();
+        detailList.add(ex.getLocalizedMessage());
+
+        BaseResponse<Object> error = new ApiResponse<>(res, HttpStatus.NOT_FOUND.value(), detailList, "Sorry, Command Not Supported, for this device");
         return new ResponseEntity(error, HttpStatus.NOT_FOUND);
     }
 

@@ -1,12 +1,15 @@
 package com.signz.homeautomation.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Data
+@Getter
+@Setter
 public class Home {
 
     @Id
@@ -14,7 +17,7 @@ public class Home {
     @Column(name = "id")
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "home")
+    @OneToMany(mappedBy = "home",cascade = CascadeType.ALL)
     private Set<Device> deviceSet;
 
     public void addDevice(Device device) {

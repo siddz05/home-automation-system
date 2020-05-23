@@ -9,6 +9,6 @@ public interface MasterCommand {
     /**
      * This, Will Executed by all the Command Classes
      */
-    void execute();
+    String execute();
 
 }

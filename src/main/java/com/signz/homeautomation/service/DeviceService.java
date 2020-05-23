@@ -2,6 +2,7 @@ package com.signz.homeautomation.service;
 
 import com.signz.homeautomation.exception.CommandNotFoundException;
 import com.signz.homeautomation.exception.DeviceNotFoundException;
+import com.signz.homeautomation.exception.UnsupportedCommandException;
 import com.signz.homeautomation.model.Command;
 import com.signz.homeautomation.model.Device;
 
@@ -53,5 +54,15 @@ public interface DeviceService {
      * @param deviceId
      * @return
      */
-    Device removeCommandInDevice(Command command, Integer deviceId) throws CommandNotFoundException, DeviceNotFoundException;
+    Device removeCommandFromDevice(Command command, Integer deviceId) throws CommandNotFoundException, DeviceNotFoundException;
+
+
+    /**
+     * @param deviceId
+     * @param commandId
+     * @return
+     * @throws CommandNotFoundException
+     * @throws DeviceNotFoundException
+     */
+    Object executeCommandForDevice(Integer deviceId, Integer commandId) throws CommandNotFoundException, DeviceNotFoundException, UnsupportedCommandException;
 }
