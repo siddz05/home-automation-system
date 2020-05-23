@@ -37,5 +37,23 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity(error, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(HomeNotFoundException.class)
+    public final ResponseEntity<Object> handelHomeNotFoundException(HomeNotFoundException ex, HttpServletResponse res) {
+        List<String> detailList = new ArrayList<>();
+        detailList.add(ex.getLocalizedMessage());
+
+        BaseResponse<Object> error = new ApiResponse<>(res, HttpStatus.NOT_FOUND.value(), detailList, "No Home Found");
+        return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CommandNotFoundException.class)
+    public final ResponseEntity<Object> handelHomeNotFoundException(CommandNotFoundException ex, HttpServletResponse res) {
+        List<String> detailList = new ArrayList<>();
+        detailList.add(ex.getLocalizedMessage());
+
+        BaseResponse<Object> error = new ApiResponse<>(res, HttpStatus.NOT_FOUND.value(), detailList, "No Command Found");
+        return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+    }
+
 
 }

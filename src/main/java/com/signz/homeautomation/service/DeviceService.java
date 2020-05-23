@@ -1,18 +1,57 @@
 package com.signz.homeautomation.service;
 
+import com.signz.homeautomation.exception.CommandNotFoundException;
+import com.signz.homeautomation.exception.DeviceNotFoundException;
+import com.signz.homeautomation.model.Command;
 import com.signz.homeautomation.model.Device;
-import com.signz.homeautomation.model.Home;
 
 import java.util.List;
 
+/**
+ * @author siddharthdwivedi
+ */
 public interface DeviceService {
 
-    Device addDeviceForHome(Device device, Integer homeId);
+    /**
+     * @param device
+     * @return
+     */
+    Device addDevice(Device device);
 
-    Integer deleteDevice(Integer deviceId, Home homeId);
+    /**
+     * @param device
+     * @return
+     */
+    Device updateDevice(Device device) throws DeviceNotFoundException;
 
-    Home getDeviceById(Integer deviceId);
+    /**
+     * @param deviceId
+     * @return
+     */
+    Integer deleteDevice(Integer deviceId) throws DeviceNotFoundException;
 
+    /**
+     * @param deviceId
+     * @return
+     */
+    Device getDeviceById(Integer deviceId) throws DeviceNotFoundException;
+
+    /**
+     * @return
+     */
     List<Device> getAllDevice();
 
+    /**
+     * @param command
+     * @param deviceId
+     * @return
+     */
+    Device addCommandInDevice(Command command, Integer deviceId) throws CommandNotFoundException, DeviceNotFoundException;
+
+    /**
+     * @param command
+     * @param deviceId
+     * @return
+     */
+    Device removeCommandInDevice(Command command, Integer deviceId) throws CommandNotFoundException, DeviceNotFoundException;
 }

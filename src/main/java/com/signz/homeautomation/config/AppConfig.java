@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories
+@EnableJpaRepositories(value = "com.signz.homeautomation.repository")
 @EntityScan("com.signz.homeautomation.model")
 public class AppConfig {
 }

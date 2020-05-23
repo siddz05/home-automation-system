@@ -17,12 +17,12 @@ public class Home {
     @OneToMany(mappedBy = "home")
     private Set<Device> deviceSet;
 
-    void addDevice(Device device) {
+    public void addDevice(Device device) {
         deviceSet.add(device);
         device.setHome(this);
     }
 
-    void deleteDevice(Device device) {
+    public void removeDevice(Device device) {
         deviceSet.remove(device);
         device.setHome(null);
     }

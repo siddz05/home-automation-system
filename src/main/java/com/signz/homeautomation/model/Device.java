@@ -24,12 +24,12 @@ public class Device {
     @OneToMany(mappedBy = "device")
     Set<Command> commandSet;
 
-    void addCommand(Command command) {
+    public void addCommand(Command command) {
         commandSet.add(command);
         command.setDevice(this);
     }
 
-    void removeCommand(Command command) {
+    public void removeCommand(Command command) {
         commandSet.remove(command);
         command.setDevice(null);
     }

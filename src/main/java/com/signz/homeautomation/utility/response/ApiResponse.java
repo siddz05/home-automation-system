@@ -8,10 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 @Data
 public class ApiResponse<T> implements BaseResponse<T> {
 
-    final Integer SUCCESS_STATUS = 200;
+    static final transient Integer SUCCESS_STATUS = 200;
 
     int status;
-    String message;
+    String message = "success";
     T data;
 
     public ApiResponse(HttpServletResponse response, T data) {
