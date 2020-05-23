@@ -65,7 +65,7 @@ public class DeviceController {
      * @throws Exception
      */
     @GetMapping()
-    BaseResponse<List<Device>> getAllHome(HttpServletResponse res) throws Exception {
+    BaseResponse<List<Device>> getAllDevice(HttpServletResponse res) throws Exception {
         List<Device> deviceList = deviceService.getAllDevice();
         return new ApiResponse<>(res, deviceList);
     }
