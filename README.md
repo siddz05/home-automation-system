@@ -7,6 +7,7 @@ Home Automation System - A full fledged home automation system with all the nece
 - Gradle
 - H2 InMemory Database
 - Swagger 2.0
+- [Git Repository](https://github.com/siddz05/home-automation-system)
 
 ### Code Flow
 - Server will be up and running, on port 8081
@@ -69,5 +70,28 @@ curl -X PUT \
 "deviceName":"tv"
 }'
 
+- Remove A Smart Device
+curl -XDELETE  localhost:8081/home/1/device/19
+
 - Execute Command On Device
 curl -XGET  http://localhost:8081/device/3/command/6
+
+# NOTE
+* We have two inbuilt homes in place: Home 1 & Home 2
+* Both these Homes having two Smart Devices Installed : Light and TV
+* Light Supports:
+    1. On http://localhost:8081/device/3/command/7
+    2. Off http://localhost:8081/device/3/command/8
+    
+* TV Supports:
+    1. On http://localhost:8081/device/4/command/9
+    2. Off http://localhost:8081/device/4/command/10
+    3. Change Channel http://localhost:8081/device/4/command/11
+    4. Change Volume http://localhost:8081/device/4/command/12
+    
+    As, you can see, 3 and 4 are device ID.
+    abd 7, 8, 9, 10, 11, 12 are commands.
+    
+    
+###### For any support please, raise a git issue or email me 
+siddmit@hotmail.com :) 
