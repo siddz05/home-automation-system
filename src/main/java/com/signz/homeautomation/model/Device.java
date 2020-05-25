@@ -26,7 +26,7 @@ public class Device {
     @JoinColumn(name = "home_id")
     private Home home;
 
-    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)//cascade.ALL to persiste parent ID
+    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL,  orphanRemoval = true)//cascade.ALL to persiste parent ID
     Set<Command> commandSet;
 
     public void addCommand(Command command) {

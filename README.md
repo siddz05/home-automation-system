@@ -1,9 +1,35 @@
 # Home Automation System
-The following was discovered as part of building this project:
+Home Automation System - A full fledged home automation system with all the necessary APIs just few clicks away from converting your old home to a SMART HOME.
 
-* The original package name 'com.signz.home-automation' is invalid and this project uses 'com.signz.homeautomation' instead.
+### Tech Stack
 
-# Getting Started
+- Spring Boot 2.0 - Sprig JPA / Data + MVC Layer In Place 
+- Gradle
+- H2 InMemory Database
+- Swagger 2.0
+
+### Code Flow
+- Server will be up and running, on port 8081
+- Health Check API : http://localhost:8081/health-check
+- The Flow Starts with add a new Home, to the data base.
+- Now, we have our home ready, we can add new device to the home.
+- Once we have the device ready, please make sure we added the respective value in the enum (SupportedDevice.java).
+- We are using the <b>Command Design Pattern</b> the basic implementation can be found in the package *(com.signz.homeautomation.command)*.
+- For every Device, we need a sub package same as we have for light and tv, with the required classes make sure all the XXCommand.java classes Implements MasterCommand Interface.
+- Once, we have these setup ready, all we need to do is create a getComandXX method in Command Impl class.
+- We have Sample Data Ingested, for Home 1 and Home 2 With Fan and TV Device in place, for both of them.
+- Light Supports: 
+  1. TurnON 
+  2. TurnOff
+   
+- Tv Supports: 
+  1. Turn ON
+  2. Turn Off
+  3. Change Channel
+  4. Change Volume
+ - Visit Swagger For More Details: [Swagger](http://localhost:8081/swagger-ui.html)
+
+## Getting Started
 
 ### Reference Problem Statement
 
@@ -16,23 +42,32 @@ Scenarios
 - Add new smart device
 - Perform an operation on a device 
 - Remove an installed device
+
+### API Specs
+
+- [Home Related APIs](http://localhost:8081/swagger-ui.html#/home-controller)
+- [Device Related APIs](http://localhost:8081/swagger-ui.html#/device-controller)
+
+#### Important APIs:
+
+- [List all smart devices](http://localhost:8081/swagger-ui.html#/device-controller/getAllDeviceUsingGET)
+- [Add new smart device](http://localhost:8081/swagger-ui.html#/home-controller/addDeviceInHomeUsingPUT)
+- [Perform an operation on a device](http://localhost:8081/swagger-ui.html#/device-controller/executeCommandForDeviceUsingGET)
+- [Install an device in home](http://localhost:8081/swagger-ui.html#/home-controller/addDeviceInHomeUsingPUT) 
+- [Remove an installed device](http://localhost:8081/swagger-ui.html#/home-controller/removeDeviceFromHomeUsingDELETE)
  
 
-### Guides
-The following guides illustrate how to use some features concretely:
+### Examples
+- List All Smart Device
+http://localhost:8081/device
 
-* [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
-* [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
-* [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
-* [Accessing JPA Data with REST](https://spring.io/guides/gs/accessing-data-rest/)
-* [Accessing Neo4j Data with REST](https://spring.io/guides/gs/accessing-neo4j-data-rest/)
-* [Accessing MongoDB Data with REST](https://spring.io/guides/gs/accessing-mongodb-data-rest/)
-* [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
-* [Spring Boot and OAuth2](https://spring.io/guides/tutorials/spring-boot-oauth2/)
-* [Authenticating a User with LDAP](https://spring.io/guides/gs/authenticating-ldap/)
+- Add New Smart Device
+curl -X PUT \
+  http://localhost:8081/home/1/device \
+  -H 'Content-Type: application/json' \
+  -d '{
+"deviceName":"tv"
+}'
 
-### Additional Links
-These additional references should also help you:
-
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
-
+- Execute Command On Device
+http://localhost:8081/device/3/command/6

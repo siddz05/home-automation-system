@@ -18,7 +18,7 @@ public class Home {
     @Setter(AccessLevel.NONE)
     private Integer id;
     private String name;
-    @OneToMany(mappedBy = "home", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "home", cascade = CascadeType.ALL,  orphanRemoval = true)
     private Set<Device> deviceSet;
 
     public void addDevice(Device device) {

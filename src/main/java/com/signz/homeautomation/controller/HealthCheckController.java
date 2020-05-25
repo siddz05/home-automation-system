@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping
 public class HealthCheckController {
 
-    @GetMapping(value = {"/heath-check", "/"})
+    @GetMapping(value = {"/health-check", "/"})
     public String healthCheck() {
         return "Home Automation System Is Up & Running !";
     }

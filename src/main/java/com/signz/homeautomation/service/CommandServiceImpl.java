@@ -104,11 +104,11 @@ public class CommandServiceImpl implements CommandService {
         String d = device.getDeviceName();
         SupportedDevice deviceName = SupportedDevice.getDeviceByValue(d);
 
-        try{
+        try {
             SupportedDevice abc = SupportedDevice.valueOf("FAN");
             System.out.println(abc);
-        }catch (Exception e){
-           e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
         switch (deviceName) {
