@@ -1,5 +1,8 @@
 package com.signz.homeautomation.utility;
 
+/**
+ * @author siddharthdwivedi
+ */
 public class Utility {
 
     public static <T> void print(T t) {

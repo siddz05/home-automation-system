@@ -5,6 +5,11 @@ import lombok.Data;
 
 import javax.servlet.http.HttpServletResponse;
 
+
+/**
+ * @author siddharthdwivedi
+ * @param <T>
+ */
 @Data
 public class ApiResponse<T> implements BaseResponse<T> {
 

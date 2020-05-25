@@ -3,14 +3,11 @@ package com.signz.homeautomation.command.light;
 import static com.signz.homeautomation.utility.Utility.print;
 
 /**
+ * @author siddharthdwivedi
  * One of the reciver Class
  */
 public class Light {
 
-    enum SupportedCommands{
-        TURN_ON,
-        TURN_OFF,
-    }
 
     public String turnOn() {
         print("Light On");

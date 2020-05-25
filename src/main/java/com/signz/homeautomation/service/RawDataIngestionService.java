@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author siddharthdwivedi
+ * @implNote Data Ingestor for our system
+ */
 @Service
 public class RawDataIngestionService implements CommandLineRunner {
 

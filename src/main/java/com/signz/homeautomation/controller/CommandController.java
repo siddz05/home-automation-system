@@ -16,6 +16,10 @@ import java.util.List;
 
 import static com.signz.homeautomation.utility.Constants.PRODUCES;
 
+/**
+ * @author siddharthdwivedi
+ *
+ */
 @ApiIgnore
 @RestController
 @RequestMapping(value = "/command", produces = PRODUCES)

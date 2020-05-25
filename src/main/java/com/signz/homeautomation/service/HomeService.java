@@ -49,7 +49,7 @@ public interface HomeService {
     Home addDeviceInHome(Device device, Integer homeId) throws HomeNotFoundException, DeviceNotFoundException;
 
     /**
-     * @param device
+     * @param deviceId
      * @param homeId
      * @return
      */

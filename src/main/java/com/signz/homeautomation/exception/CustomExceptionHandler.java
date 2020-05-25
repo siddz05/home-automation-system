@@ -2,6 +2,7 @@ package com.signz.homeautomation.exception;
 
 import com.signz.homeautomation.utility.response.ApiResponse;
 import com.signz.homeautomation.utility.response.BaseResponse;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -14,18 +15,23 @@ import java.util.List;
 
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 
+/**
+ * @author siddharthdwivedi
+ * @implNote Global Exception Handler
+ *
+ */
 @SuppressWarnings({"unchecked", "raw"})
 @ControllerAdvice
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
+
+    @ExceptionHandler({Exception.class})
     public final ResponseEntity<Object> handelAllException(Exception ex, HttpServletResponse res) {
 
         List<String> detailList = new ArrayList<>();
         detailList.add(ex.getLocalizedMessage());
         BaseResponse<Object> error = new ApiResponse<>(res, INTERNAL_SERVER_ERROR.value(), detailList, "Something Went Wrong");
-        return new ResponseEntity(error, INTERNAL_SERVER_ERROR);
-
+        return new ResponseEntity(error, getDefaultHeaer(), INTERNAL_SERVER_ERROR);
     }
 
     /**
@@ -39,7 +45,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         detailList.add(ex.getLocalizedMessage());
 
         BaseResponse<Object> error = new ApiResponse<>(res, HttpStatus.NOT_FOUND.value(), detailList, "Device Not Found");
-        return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+        return new ResponseEntity(error, getDefaultHeaer(), HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -53,7 +59,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         detailList.add(ex.getLocalizedMessage());
 
         BaseResponse<Object> error = new ApiResponse<>(res, HttpStatus.NOT_FOUND.value(), detailList, "No Home Found");
-        return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+        return new ResponseEntity(error, getDefaultHeaer(), HttpStatus.NOT_FOUND);
     }
 
     /**
@@ -67,7 +73,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         detailList.add(ex.getLocalizedMessage());
 
         BaseResponse<Object> error = new ApiResponse<>(res, HttpStatus.NOT_FOUND.value(), detailList, "No Command Found");
-        return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+        return new ResponseEntity(error, getDefaultHeaer(), HttpStatus.NOT_FOUND);
     }
 
 
@@ -82,8 +88,14 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         detailList.add(ex.getLocalizedMessage());
 
         BaseResponse<Object> error = new ApiResponse<>(res, HttpStatus.NOT_FOUND.value(), detailList, "Sorry, Command Not Supported, for this device");
-        return new ResponseEntity(error, HttpStatus.NOT_FOUND);
+        return new ResponseEntity(error, getDefaultHeaer(), HttpStatus.NOT_FOUND);
     }
 
+
+    HttpHeaders getDefaultHeaer() {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Type", "application/json");
+        return headers;
+    }
 
 }

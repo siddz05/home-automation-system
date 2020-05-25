@@ -3,6 +3,9 @@ package com.signz.homeautomation.command.light;
 import com.signz.homeautomation.command.MasterCommand;
 import lombok.AllArgsConstructor;
 
+/**
+ * @author siddharthdwivedi
+ */
 @AllArgsConstructor
 public class TurnOffLightCommand implements MasterCommand {
 

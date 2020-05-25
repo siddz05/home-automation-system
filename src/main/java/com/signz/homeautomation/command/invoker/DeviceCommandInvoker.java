@@ -4,6 +4,10 @@ import com.signz.homeautomation.command.MasterCommand;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 
+
+/**
+ * @author siddharthdwivedi
+ */
 @Component
 public class DeviceCommandInvoker {
 

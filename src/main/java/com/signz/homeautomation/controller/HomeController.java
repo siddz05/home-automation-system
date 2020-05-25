@@ -16,6 +16,9 @@ import java.util.List;
 
 import static com.signz.homeautomation.utility.Constants.PRODUCES;
 
+/**
+ * @author siddharthdwivedi
+ */
 //@Api(value = "Content Api", tags = "content-api")
 @RestController
 @RequestMapping(value = "/home", produces = PRODUCES)

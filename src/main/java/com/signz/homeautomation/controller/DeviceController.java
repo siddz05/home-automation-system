@@ -15,6 +15,9 @@ import java.util.List;
 
 import static com.signz.homeautomation.utility.Constants.PRODUCES;
 
+/**
+ * @author siddharthdwivedi
+ */
 @RestController
 @RequestMapping(value = "/device", produces = PRODUCES)
 public class DeviceController {

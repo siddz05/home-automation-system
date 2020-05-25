@@ -6,6 +6,9 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author siddharthdwivedi
+ */
 @Repository
 public interface DeviceRepository extends PagingAndSortingRepository<Device, Integer> {
 

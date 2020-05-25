@@ -14,6 +14,9 @@ import java.util.Map;
 
 import static com.signz.homeautomation.utility.Constants.PRODUCES;
 
+/**
+ * @author siddharthdwivedi
+ */
 @ApiIgnore
 @RestController
 @RequestMapping(value = "/test", produces = PRODUCES)

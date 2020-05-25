@@ -8,6 +8,9 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
+/**
+ * @author siddharthdwivedi
+ */
 @Entity
 @Getter
 @Setter
@@ -27,7 +30,7 @@ public class Device {
     private Home home;
 
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)//cascade.ALL to persiste parent ID
-    Set<Command> commandSet;
+            Set<Command> commandSet;
 
     public void addCommand(Command command) {
         commandSet.add(command);

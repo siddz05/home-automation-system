@@ -1,6 +1,7 @@
 package com.signz.homeautomation.command;
 
 /**
+ * @author siddharthdwivedi
  * @Impl Master Command Interface, helpus controll all the commands.
  */
 @FunctionalInterface
