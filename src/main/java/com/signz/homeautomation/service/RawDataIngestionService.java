@@ -34,6 +34,10 @@ public class RawDataIngestionService implements CommandLineRunner {
             device.setDeviceName("light");
             homeService.addDeviceInHome(device, home.getId());
 
+            device = new Device();
+            device.setDeviceName("tv");
+            homeService.addDeviceInHome(device, home.getId());
+
 
         });
     }
@@ -41,12 +45,33 @@ public class RawDataIngestionService implements CommandLineRunner {
     void addCommandToDevice() {
         deviceService.getAllDevice().forEach(device -> {
 
-            Command c = new Command();
-            c.setDeviceCommand("turnOn");
-            deviceService.addCommandInDevice(c, device.getId());
-            c = new Command();
-            c.setDeviceCommand("turnOff");
-            deviceService.addCommandInDevice(c, device.getId());
+            if (device.getDeviceName().equals("light")) {
+                Command c = new Command();
+                c.setDeviceCommand("turnOn");
+                deviceService.addCommandInDevice(c, device.getId());
+                c = new Command();
+                c.setDeviceCommand("turnOff");
+                deviceService.addCommandInDevice(c, device.getId());
+            }
+
+            if (device.getDeviceName().equals("tv")) {
+                Command c = new Command();
+                c.setDeviceCommand("turnOn");
+                deviceService.addCommandInDevice(c, device.getId());
+                c = new Command();
+                c.setDeviceCommand("turnOff");
+                deviceService.addCommandInDevice(c, device.getId());
+
+                c = new Command();
+                c.setDeviceCommand("changeChannel");
+                deviceService.addCommandInDevice(c, device.getId());
+
+                c = new Command();
+                c.setDeviceCommand("changeVolume");
+                deviceService.addCommandInDevice(c, device.getId());
+
+
+            }
 
 
         });

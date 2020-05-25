@@ -3,7 +3,7 @@ package com.signz.homeautomation.utility.enumconstants;
 import com.signz.homeautomation.exception.DeviceNotFoundException;
 
 public enum SupportedDevice {
-    FAN("fan"), LIGHT("light"), TV("light");
+    FAN("fan"), LIGHT("light"), TV("tv");
 
     String value;
 

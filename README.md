@@ -59,7 +59,7 @@ Scenarios
 
 ### Examples
 - List All Smart Device
-http://localhost:8081/device
+curl -XGET http://localhost:8081/device
 
 - Add New Smart Device
 curl -X PUT \
@@ -70,4 +70,4 @@ curl -X PUT \
 }'
 
 - Execute Command On Device
-http://localhost:8081/device/3/command/6
+curl -XGET  http://localhost:8081/device/3/command/6

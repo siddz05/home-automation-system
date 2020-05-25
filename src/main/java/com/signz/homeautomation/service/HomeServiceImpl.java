@@ -91,12 +91,13 @@ public class HomeServiceImpl implements HomeService {
     }
 
     /**
-     * @param device
+     * @param deviceId
      * @param homeId
      * @return
      */
     @Override
-    public Home removeDeviceFromHome(Device device, Integer homeId) {
+    public Home removeDeviceFromHome(Integer deviceId, Integer homeId) {
+        Device device = deviceService.getDeviceById(deviceId);
         if (isNull(device)) {
             throw new DeviceNotFoundException("No Device Found");
         }
